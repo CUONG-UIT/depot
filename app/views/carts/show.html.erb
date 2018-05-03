@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+<h2>Your Pragmatic Cart</h2>
+<ul>
+    <% @cart.line_items.each do |item| %>
+      <li>Quanity: <%= item.quanity %> &times <%= item.product.title %></li>
+      <li>Result: <%= number_to_currency(item.product.price*item.quanity)%></li>
+      <%= button_to 'Destroy',item ,method: :delete,data: [confirm: "Are you sure?"] %><hr>
+    <% end %>
+  <tr class="total_line">
+    <td colspan="2">Total:</td>
+    <td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
+  </tr>
+</ul>
+<%= link_to 'Back' ,products_path %>
